@@ -1,0 +1,3 @@
+[submodule "base"]
+	path = base
+	url = https://github.com/aMonteSchool/web-app-final-base_v1.git
