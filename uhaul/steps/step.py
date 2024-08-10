@@ -1,17 +1,16 @@
-from time import sleep
 from typing import Type, Optional
 
 from behave import *
 from behave.runner import Context
 
-from base.components.base import Base
-
 from base.components.behave_support import BehaveSupport as BS
 from base.components.context_table import ContextTable
+from uhaul.components.bike_racks.bike_racks import BikeRacks
 from uhaul.components.constant import SelectLabels, HowPickUpOptions
 from uhaul.components.hero_form import HeroForm
 from uhaul.components.how_pickup import HowPickUp
 from uhaul.components.modal import Modal
+from uhaul.components.order_models.bike_racks_order import BikeRacksOrder
 from uhaul.components.order_models.storage_order import StorageOrder
 from uhaul.components.order_models.truck_order import TruckOrder
 from uhaul.components.storage.result_filter import ResultFilter
@@ -23,8 +22,6 @@ from uhaul.components.trucks.moving_option import MovingOption
 from uhaul.components.trucks.shopping_cart import ShoppingCart
 from uhaul.components.trucks.storage_units import StorageUnitsOption
 from uhaul.components.trucks.truck_rates import Rates
-from uhaul.components.bike_racks.bike_racks import BikeRacks
-from uhaul.components.order_models.bike_racks_order import BikeRacksOrder
 
 
 @step('Create a new {order_type:OrderType} order')
