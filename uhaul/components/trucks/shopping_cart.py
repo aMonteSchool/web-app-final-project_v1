@@ -21,8 +21,8 @@ class ShoppingCart(Table):
 
         #  Round expected price to two decimal places to avoid floating point calculation problem
         expected_price = round(sum(self.order.truck_price_records.values()), 2)
-        expected_price = sum(self.order.truck_price_records.values())
-        self.make_screenshot('price_validation_screenshot.png')
+        # expected_price = sum(self.order.truck_price_records.values())
+        # self.make_screenshot('price_validation_screenshot.png')
 
         assert actual_price == expected_price, (f"Due at Pick Up price is not as expected:"
                                                 f"\nExpected: {expected_price}"
