@@ -1,12 +1,12 @@
 Feature: GTHB - Followers
 
-  Background: Navigation
-    Given Browser: navigate to Github
+  Background: Open home page
+    Given Browser: navigate to "Github_UI"
 
   @GTHB-7
   Scenario Outline: GTHB Integration API: verify followers info
     When UI: search for <username>
-    And API: send GET request to users/<username>/followers?per_page=100
+    And API: send GET request to github/users/<username>/followers?per_page=100
     And API: verify status code is 200
     Then GitHub Integration API: Followers: verify param values
       | label     |
@@ -25,7 +25,7 @@ Feature: GTHB - Followers
   @GTHB-7
   Scenario Outline: GTHB Integration API: verify number of followers
     When UI: search for <username>
-    And API: send GET request to users/<username>/followers?per_page=100
+    And API: send GET request to github/users/<username>/followers?per_page=100
     And API: verify status code is 200
     Then GitHub Integration API: Followers: verify total amount
 

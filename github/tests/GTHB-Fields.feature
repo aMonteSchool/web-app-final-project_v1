@@ -6,7 +6,7 @@ Feature: GTHB - Fields
   @GTHB-5 @GTHB-25 @GTHB-32 @GTHB-39
   Scenario Outline: GTHB Integration API: verify summary info
     When UI: search for <username>
-    And API: send GET request to users/<username>
+    And API: send GET request to github/users/<username>
     And API: verify status code is 200
     Then GitHub Integration API: Summary: verify param values
       | label     |

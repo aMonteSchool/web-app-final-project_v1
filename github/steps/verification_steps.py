@@ -13,11 +13,11 @@ def integration_verify_ui_vs_api(context, component):
     component = component.lower()
 
     if component == 'followers':
-        instance = Followers(context.driver)
+        instance = Followers(context.browser)
     elif component == 'user':
-        instance = User(context.driver)
+        instance = User(context.browser)
     elif component == 'summary':
-        instance = Summary(context.driver)
+        instance = Summary(context.browser)
 
     for param in params:
         label = param.get('label').lower()
@@ -38,15 +38,15 @@ def integration_verify_ui_vs_api(context, what):
     assert what in what_list, f'Script: {what} should be in {what_list}'
 
     if what == 'follow':
-        instance = User(context.driver)
+        instance = User(context.browser)
         api_urls = instance.eval_json_path_by_label(context.response_body, what)
     elif what == 'blog':
-        instance = User(context.driver)
+        instance = User(context.browser)
         values = instance.eval_json_path_by_label(context.response_body, what)
         api_urls = instance.compute_blog(values)
     elif what == 'followers':
         what = 'links'
-        instance = Followers(context.driver)
+        instance = Followers(context.browser)
         api_urls = instance.eval_json_path_by_label(context.response_body, what)
 
     ui_urls = instance.get_elements_href_by_label(what)
@@ -56,7 +56,7 @@ def integration_verify_ui_vs_api(context, what):
 
 @step('GitHub Integration API: Followers: verify total amount')
 def integration_verify_ui_vs_api(context):
-    instance = Followers(context.driver)
+    instance = Followers(context.browser)
 
     api_amount = len(context.response_body)
 

@@ -1,24 +1,35 @@
 import chrome
+from base.environment import hooks
+from base.steps import browser_steps
+
+
+def before_all(context):
+    hooks.before_all(context)
 
 
 def before_feature(context, feature):
-    context.BASE_URL = f'https://gh-users-search.netlify.app'
-    context.BASE_API = f'https://api.github.com'
+    hooks.before_feature(context, feature)
 
 
 def before_scenario(context, scenario):
-    if chrome.is_alive(context):
-        chrome.close(context)
-    chrome.init(context)
-    chrome.info(context)
+    hooks.before_scenario(context, scenario)
+
+
+def before_step(context, step):
+    hooks.before_step(context, step)
 
 
 def after_step(context, step):
-    print('STEP\t\t', step.name, '\t', step.status)
-    if step.status == 'failed':
-        chrome.take_screenshot(context)
+    hooks.after_step(context, step)
 
 
 def after_scenario(context, scenario):
-    print('SCENARIO\t', scenario.name, '\t', scenario.status)
-    chrome.close(context)
+    hooks.after_scenario(context, scenario)
+
+
+def after_feature(context, feature):
+    hooks.after_feature(context, feature)
+
+
+def after_all(context):
+    hooks.after_all(context)

@@ -1,14 +1,18 @@
 import requests
 from behave import step
 
+from base.helpers.helper import map_url
+
 
 @step('API: send {type} request to {endpoint}')
 def send_request_to(context, type, endpoint):
-    if endpoint.startswith('/'):
-        endpoint = endpoint[1:]
+    url_, part_url = endpoint.split('/', 1)
+    base_url = map_url(url_)
+    url = base_url + part_url
 
+    response = None
     if type.upper() == 'GET':
-        response = requests.get(f"{context.BASE_API}/{endpoint}")
+        response = requests.get(url)
 
     context.request_url = response.url
     context.response = response
