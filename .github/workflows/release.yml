@@ -2,7 +2,7 @@ name: Release
 
 on:
   schedule:
-    - cron: '17 10 * * *'
+    - cron: '17 11 * * *'
 
 jobs:
   release:
