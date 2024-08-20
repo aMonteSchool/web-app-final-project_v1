@@ -1,3 +1,5 @@
+from typing import Optional, Dict
+
 from selenium.webdriver.chrome.webdriver import WebDriver
 
 from uhaul.components.order_models.truck_order import TruckOrder
@@ -9,5 +11,5 @@ class BoxesOption(OrderOption):
     def __init__(self, driver: WebDriver, order: TruckOrder = None):
         super().__init__(driver)
 
-    def add_option(self):
+    def add_option(self, options: Optional[Dict[str, str]] = None):
         pass
