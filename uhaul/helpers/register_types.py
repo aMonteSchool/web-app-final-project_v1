@@ -3,6 +3,7 @@ from behave import register_type
 from uhaul.components.order_models.bike_racks_order import BikeRacksOrder
 from uhaul.components.order_models.storage_order import StorageOrder
 from uhaul.components.order_models.truck_order import TruckOrder
+from uhaul.components.order_models.ubox_order import UboxOrder
 from uhaul.components.trucks.boxes_option import BoxesOption
 from uhaul.components.trucks.dollies_option import DolliesOption
 from uhaul.components.trucks.moving_option import MovingOption
@@ -13,7 +14,8 @@ def select_order_type(order_type: str) -> TruckOrder | StorageOrder | BikeRacksO
     order_map = {
         'truck': TruckOrder,
         'storage': StorageOrder,
-        'bike racks': BikeRacksOrder
+        'bike racks': BikeRacksOrder,
+        'ubox': UboxOrder
     }
     try:
         return order_map[order_type.lower()]

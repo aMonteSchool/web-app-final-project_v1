@@ -12,6 +12,7 @@ class DamageProtection(Base):
     BUTTON_CLOSE = ''
     COVERAGE = '//ul[@id="coverageList_Truck"]/li'
     COVERAGE_PRICE = COVERAGE + '//dd//strong'
+    TRAILER_RENTAL_COVERAGE_PRICE = '//ul[@id = "coverageList_Trailer"]//strong[@class ="text-xl text-callout medium-text-base"]'
 
     def __init__(self, driver: WebDriver, order: Type[TruckOrder | StorageOrder] = None):
         super().__init__(driver)
@@ -24,3 +25,9 @@ class DamageProtection(Base):
         price = float(self.find_element(self.COVERAGE_PRICE.format(size=self.order.truck_size)).text.replace('$', ''))
 
         self.order.truck_price_records |= {"coverage": price}
+
+    def collect_trailer_coverage(self):
+        price = float(self.find_element(self.TRAILER_RENTAL_COVERAGE_PRICE.format(size=self.order.truck_size)).text.replace('$', ''))
+
+        self.order.truck_price_records |= {"trailer_coverage": price}
+

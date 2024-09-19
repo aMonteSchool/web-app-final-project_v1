@@ -18,7 +18,9 @@ Feature: UHaul: Truck Rental Flow
 
   Scenario: Select Location
     When Select closest truck
-    When Skip options on page Dollies
+    When Add options on page Dollies
+      | Utility Dolly  | 1 |
+      | Furniture Pads | 1 |
     When Skip options on page Storage Units
     When Skip options on page Boxes & Packing
     When Skip options on page Moving Loading

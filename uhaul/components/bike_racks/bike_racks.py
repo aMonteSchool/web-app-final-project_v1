@@ -1,12 +1,7 @@
 import time
-
-from uhaul.components.trucks.order_option import OrderOption
-from uhaul.components.order_models.bike_racks_order import BikeRacksOrder
-
 from selenium.webdriver.chrome.webdriver import WebDriver
-from selenium.webdriver.support.select import Select
-
-from typing import Type
+from uhaul.components.order_models.bike_racks_order import BikeRacksOrder
+from uhaul.components.trucks.order_option import OrderOption
 
 
 class BikeRacks(OrderOption):
@@ -32,7 +27,14 @@ class BikeRacks(OrderOption):
     ITEMS_SMALL = '//div[@class="show-for-small-only"]//child::li'
     ITEMS_MEDIUM = '//div[@class="show-for-medium"]//child::li'
 
-    def __init__(self, driver: WebDriver, order: Type[BikeRacksOrder] = None):
+    BIKE_RACK = '//b[contains(text(), "{name}")]'
+    PRICE = '//b[contains(text(), "{name}")]/ancestor::div[contains(@class, "medium-text")]//p[contains(@class, "text-dark")]/b'
+
+    ADD_TO_CART = '//button[@id = "addToCart"]'
+    VIEW_CART = '//a[@id = "viewCart"]'
+    SHIP_TO_ME_OPTION = '//input[@id = "shipToMe"]/ancestor::li'
+
+    def __init__(self, driver: WebDriver, order: BikeRacksOrder = None):
         super().__init__(driver)
         self.order = order
 
@@ -75,3 +77,31 @@ class BikeRacks(OrderOption):
         assert expected_results == actual_result, (f"Results number is not as expected:"
                                                    f"\nExpected: {expected_results}"
                                                    f"\nActual: {actual_result}")
+
+    def select_bike_rack(self, options):
+        for k, v in options.items():
+            option = {k: v}
+            self.order.set_data(option)
+
+        self.collect_price()
+        self.find_element(self.BIKE_RACK.format(name=self.order.bike_rack)).click()
+
+
+    def click_add_to_card(self):
+        self.find_element(self.ADD_TO_CART).click()
+
+
+    def click_vew_cart(self):
+        self.find_element(self.VIEW_CART).click()
+
+
+    def select_ship_to_me_option(self):
+        self.find_element(self.SHIP_TO_ME_OPTION).click()
+
+
+    def collect_price(self):
+        price = float(self.find_element(self.PRICE.format(name=self.order.bike_rack)).text.replace('$', ''))
+
+        self.order.bike_racks_price_records |= {"rate": price}
+
+

@@ -12,12 +12,13 @@ Feature: UHaul: Truck Rental Flow
 
 
   Scenario: Select Rate -> Verify Location Page data
-    When Select the truck rate
-    When Verify price on Select a Location page
-    When Verify size on Select a Location page
+    When Select the truck with towing
+        | towing_year  | 2018 |
+        | towing_make  | BMW  |
+        | towing_model | 320i |
 
   Scenario: Select Location
-    When Select closest truck
+    When Select closest truck with towing
     When Skip options on page Dollies
     When Skip options on page Storage Units
     When Skip options on page Boxes & Packing

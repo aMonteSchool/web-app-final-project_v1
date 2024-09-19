@@ -21,7 +21,11 @@ Feature: UHaul: Truck Rental Flow
     When Skip options on page Dollies
     When Skip options on page Storage Units
     When Skip options on page Boxes & Packing
-    When Skip options on page Moving Loading
+    When Add options on page Moving Loading
+        | moving_type      | Loading     |
+        | moving_provider  | Get It Done Moving |
+        | load_unload_date | 12.28.2024  |
+        | start_time       | Evening     |
     When Skip options on page Moving Unloading
 
   Scenario: Verify Shopping Cart

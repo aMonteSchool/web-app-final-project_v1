@@ -10,7 +10,6 @@ Feature: UHaul: Truck Rental Flow
     When Fill Out Hero form Trucks & Trailers
     Then Verify header on the page Rates
 
-
   Scenario: Select Rate -> Verify Location Page data
     When Select the truck rate
     When Verify price on Select a Location page
@@ -22,7 +21,11 @@ Feature: UHaul: Truck Rental Flow
     When Skip options on page Storage Units
     When Skip options on page Boxes & Packing
     When Skip options on page Moving Loading
-    When Skip options on page Moving Unloading
+    When Add options on page Moving Unloading
+      | moving_type      | Unloading    |
+      | moving_provider  | Get It Done Moving |
+      | load_unload_date | 12.28.2024  |
+      | start_time       | Evening     |
 
   Scenario: Verify Shopping Cart
     Then Verify Shopping Cart Due at Pick Up price

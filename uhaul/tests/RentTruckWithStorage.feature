@@ -19,7 +19,9 @@ Feature: UHaul: Truck Rental Flow
   Scenario: Select Location
     When Select closest truck
     When Skip options on page Dollies
-    When Skip options on page Storage Units
+    When Add options on page Storage Units
+      | unit_size    | Medium     |
+      | move_in_date | 08.24.2024 |
     When Skip options on page Boxes & Packing
     When Skip options on page Moving Loading
     When Skip options on page Moving Unloading

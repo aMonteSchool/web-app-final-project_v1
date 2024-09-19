@@ -1,7 +1,7 @@
 behave==1.2.6
 selenium==4.13.0
 webdriver-manager>=4.0.1
-urllib3==1.26.6
+urllib3==2.0.7
 requests==2.31.0
 jsonpath-ng>=1.6.0
 python-dateutil~=2.8.2

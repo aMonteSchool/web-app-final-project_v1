@@ -20,7 +20,9 @@ Feature: UHaul: Truck Rental Flow
     When Select closest truck
     When Skip options on page Dollies
     When Skip options on page Storage Units
-    When Skip options on page Boxes & Packing
+    When Add options on page Boxes & Packing
+      | Medium Moving Box   | 5 |
+      | Plastic             | 2 |
     When Skip options on page Moving Loading
     When Skip options on page Moving Unloading
 
