@@ -1,5 +1,5 @@
 @same_browser
-Feature: UHaul: Truck Rental Flow
+Feature: UHaul: Truck Rental Flow - with Storage
 
   Background: Open home page
     Given Browser: navigate to "U-Haul"
@@ -21,7 +21,7 @@ Feature: UHaul: Truck Rental Flow
     When Skip options on page Dollies
     When Add options on page Storage Units
       | unit_size    | Medium     |
-      | move_in_date | 08.24.2024 |
+      | move_in_date | 09.24.2024 |
     When Skip options on page Boxes & Packing
     When Skip options on page Moving Loading
     When Skip options on page Moving Unloading

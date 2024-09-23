@@ -25,6 +25,7 @@ class BoxesOption(OrderOption):
             self.find_element(self.COUNT.format(item_name=key)).clear()
             self.find_element(self.COUNT.format(item_name=key)).send_keys(value)
 
+        self.driver.execute_script('window.scrollTo(0,0);')
         self.find_element(self.TOTAL_PRICE).click()
         #  add storage unit price to truck price record
         self.collect_price()

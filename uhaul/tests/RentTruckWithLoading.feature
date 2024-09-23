@@ -1,5 +1,5 @@
 @same_browser
-Feature: UHaul: Truck Rental Flow
+Feature: UHaul: Truck Rental Flow - with Loading
 
   Background: Open home page
     Given Browser: navigate to "U-Haul"
@@ -23,7 +23,7 @@ Feature: UHaul: Truck Rental Flow
     When Skip options on page Boxes & Packing
     When Add options on page Moving Loading
         | moving_type      | Loading     |
-        | moving_provider  | Get It Done Moving |
+        | moving_provider  | Moving Hard |
         | load_unload_date | 12.28.2024  |
         | start_time       | Evening     |
     When Skip options on page Moving Unloading

@@ -1,5 +1,5 @@
 @same_browser
-Feature: UHaul: Truck Rental Flow
+Feature: UHaul: Truck Rental Flow - with Unloading
 
   Background: Open home page
     Given Browser: navigate to "U-Haul"
@@ -22,10 +22,10 @@ Feature: UHaul: Truck Rental Flow
     When Skip options on page Boxes & Packing
     When Skip options on page Moving Loading
     When Add options on page Moving Unloading
-      | moving_type      | Unloading    |
-      | moving_provider  | Get It Done Moving |
-      | load_unload_date | 12.28.2024  |
-      | start_time       | Evening     |
+      | moving_type      | Unloading          |
+      | moving_provider  | Moving Hard        |
+      | load_unload_date | 12.28.2024         |
+      | start_time       | Evening            |
 
   Scenario: Verify Shopping Cart
     Then Verify Shopping Cart Due at Pick Up price

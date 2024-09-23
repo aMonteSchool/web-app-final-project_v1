@@ -16,7 +16,7 @@ Feature: UHaul: Storage Rental Flow
     When Select storage
       | storage_name | U-Haul Moving & Storage of Greater Miami |
     And Select unit
-      | storage_type | 5' x 8' x 8' |
+      | storage_type | 5' x 10' x 11' |
     And Select insurance
       | insurance_type | Use my homeowners/renters insurance |
 

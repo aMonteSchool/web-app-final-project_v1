@@ -1,5 +1,5 @@
 @same_browser
-Feature: UHaul: Truck Rental Flow
+Feature: UHaul: Truck Rental Flow - with Dollies
 
   Background: Open home page
     Given Browser: navigate to "U-Haul"

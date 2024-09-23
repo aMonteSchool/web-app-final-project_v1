@@ -1,4 +1,5 @@
 import logging
+from time import sleep
 from typing import Type, Optional
 from behave import *
 from behave.runner import Context
@@ -106,6 +107,7 @@ def add_order_options(context: Context, action: str,
             context.options = ContextTable(context).to_flat_dict()
             page(context.browser, context.order).add_option(context.options)
         case 'skip':
+            sleep(1)
             page(context.browser).skip_page()
 
 
