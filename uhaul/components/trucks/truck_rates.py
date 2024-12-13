@@ -38,5 +38,5 @@ class Rates(Base):
 
     def verify_header(self):
         header = self.find_element('//h1')
-        date = datetime.strptime(self.order.pick_up_date, "%m.%d.%Y").strftime("%m/%d/%Y").lstrip('0')
+        date = datetime.strptime(self.order.pick_up_date, "%m.%d.%Y").strftime("%m/%#d/%Y").lstrip('0')
         assert header.text.lower() == (f"Rates for {self.order.pick_up_city} on {date}".lower())

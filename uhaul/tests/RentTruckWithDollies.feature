@@ -6,7 +6,7 @@ Feature: UHaul: Truck Rental Flow
 
   Scenario: Fill out the form to get Rates
     When Create a new Truck order
-      | pick_up_date | 12.09.2024 |
+      | pick_up_date | 01.01.2025 |
     When Fill Out Hero form Trucks & Trailers
     Then Verify header on the page Rates
 
@@ -18,11 +18,15 @@ Feature: UHaul: Truck Rental Flow
 
   Scenario: Select Location
     When Select closest truck
-    When Skip options on page Dollies
+    When Add options on page Dollies
+      | Utility Dolly | 1 |
     When Skip options on page Storage Units
     When Skip options on page Boxes & Packing
     When Skip options on page Moving Loading
     When Skip options on page Moving Unloading
 
   Scenario: Verify Shopping Cart
-    Then Verify Shopping Cart Due at Pick Up price
+    When Verify Shopping Cart Due at Pick Up price
+    When Verify time on Your Shopping Cart page
+    When Verify date on Your Shopping Cart page
+    When Verify truck size on Your Shopping Cart page
