@@ -42,7 +42,10 @@ def validate_filter_selected(context, _) -> None:
 
 @step('Verify {data} on {page} page')
 def validate_filter_selected(context, data: str, page: str) -> None:
-    SelectLocation(context.browser, context.order).verify_data(data)
+    if page == 'Select a Location':
+        SelectLocation(context.browser, context.order).verify_data(data)
+    if page == 'Your Shopping Cart':
+        ShoppingCart(context.browser, context.order).verify_data(data)
 
 
 @step('Verify header on the page {page}')
@@ -90,16 +93,21 @@ def add_order_options(context: Context, action: str,
 
 @step('Verify Shopping Cart Due at Pick Up price')
 def verify_cart(context: Context) -> None:
-    ShoppingCart(context.browser, context.order).collect_environmental_fee()
-    ShoppingCart(context.browser, context.order).verify_price_due_at_pickup()
+    shopping_cart = ShoppingCart(context.browser, context.order)
+    shopping_cart.collect_environmental_fee()
+    shopping_cart.collect_vehicle_recovery_fee()
+    shopping_cart.verify_price_due_at_pickup(context.order.added_options)
     with open("price_validation_screenshot.png", "rb") as file:
         png_content = file.read()
 
-    context.log.info("Log message with PNG attachment", attachment={
-        "name": "screenshot.png",
-        "data": png_content,
-        "mime": "image/png",
-    })
+    try:
+        context.log.info("Log message with PNG attachment", attachment={
+            "name": "screenshot.png",
+            "data": png_content,
+            "mime": "image/png",
+        })
+    except Exception as e:
+        print("Could not send screenshot")
 
 
 @when("Set filter on page Bike Racks")

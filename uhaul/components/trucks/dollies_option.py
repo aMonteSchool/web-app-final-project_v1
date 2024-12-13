@@ -1,5 +1,3 @@
-import time
-
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver.support.select import Select
 
@@ -40,5 +38,6 @@ class DolliesOption(OrderOption):
             price = float(price_str) * float(amount)
 
             self.order.truck_price_records |= {key: price}
+            self.order.added_options |= {key: value}
 
         self.click(self.BUTTON_ADD)

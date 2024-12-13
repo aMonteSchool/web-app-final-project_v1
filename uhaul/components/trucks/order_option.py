@@ -1,5 +1,3 @@
-import time
-
 from selenium.webdriver.chrome.webdriver import WebDriver
 
 from base.components.base import Base

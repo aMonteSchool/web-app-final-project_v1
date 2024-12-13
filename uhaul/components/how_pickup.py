@@ -1,6 +1,5 @@
 from selenium.webdriver.chrome.webdriver import WebDriver
 
-from base.components.base import Base
 from uhaul.components.modal import Modal
 
 
