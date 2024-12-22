@@ -24,6 +24,19 @@ jobs:
       - name: Display Python version
         run: python -c "import sys; print(sys.version)"
 
+      - name: Install Chrome dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip xvfb
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo dpkg -i google-chrome-stable_current_amd64.deb || sudo apt-get -f install -y
+
+      - name: Install ChromeDriver
+        run: |
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+          wget -O /tmp/chromedriver.zip https://chromedriver.storage.googleapis.com/$CHROME_VERSION/chromedriver_linux64.zip
+          sudo unzip /tmp/chromedriver.zip -d /usr/local/bin/
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -31,4 +44,5 @@ jobs:
 
       - name: Run behave tests
         run: |
-          behave --format=progress3 uhaul/tests/HealthCheck.feature
+          # Start virtual frame buffer to run tests in headless mode
+          xvfb-run -a behave --format=progress3 uhaul/tests/HealthCheck.feature
